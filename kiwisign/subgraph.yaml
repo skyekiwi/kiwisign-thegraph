@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: KiwiSign
+    network: rinkeby
+    source:
+      address: "0x2469EdB254d499CCbE535956BEdc3a27a4649427"
+      abi: KiwiSign
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ContractRegistered
+        - ContractSigned
+      abis:
+        - name: KiwiSign
+          file: ./abis/KiwiSign.json
+      eventHandlers:
+        - event: ContractRegistered(uint256,string)
+          handler: handleContractRegistered
+        - event: ContractSigned(uint256,string,address)
+          handler: handleContractSigned
+      file: ./src/mapping.ts

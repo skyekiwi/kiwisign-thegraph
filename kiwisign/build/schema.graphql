@@ -1,0 +1,12 @@
+type ContractRegistered @entity {
+  id: ID!
+  contract_id: BigInt! # uint256
+  metadata: String! # string
+}
+
+type ContractSigned @entity {
+  id: ID!
+  contract_id: BigInt! # uint256
+  input: String! # string
+  signer: Bytes! # address
+}
